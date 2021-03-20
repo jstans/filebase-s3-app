@@ -40,7 +40,9 @@ jobs:
       - uses: pnpm/action-setup@v1.2.1
         with:
           version: 5.17.2
-          run_install: true
+          run_install: |
+            - args: [--frozen-lockfile, --strict-peer-dependencies, --prod]
+              cwd: web
       - run: npm run-script build
         working-directory: web
       - name: Copy files to the bucket with the AWS CLI
