@@ -28,12 +28,19 @@ jobs:
         with:
           node-version: "14"
       # Install webapp packages
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-pnpm-modules
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
       - uses: pnpm/action-setup@v1.2.1
         with:
           version: 5.17.2
-          run_install: |
-            - args: [--frozen-lockfile, --strict-peer-dependencies, --prod]
-              cwd: web
+          run_install: true
       - run: npm run-script build
         working-directory: web
       - name: Copy files to the bucket with the AWS CLI
