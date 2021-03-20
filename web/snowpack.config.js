@@ -16,6 +16,7 @@ module.exports = {
   packageOptions: {
     namedExports: ['@inlet/react-pixi'],
     polyfillNode: true,
+    source: 'remote',
   },
   devOptions: {
     /* ... */

@@ -1,3 +1,6 @@
-.snowpack
-build
+# Pulumi
+/.pulumi/
+Pulumi.*.yaml
 node_modules
+.aws/
+.secrets
