@@ -4,17 +4,11 @@ import App from './App.jsx';
 import './index.css';
 import ReactPixi from '@inlet/react-pixi';
 
-const { Stage, Container } = ReactPixi;
-
 console.log('test', ReactPixi);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Stage>
-      <Container x={150} y={150}>
-        <App />
-      </Container>
-    </Stage>
+    <App />
   </React.StrictMode>,
   document.getElementById('root'),
 );
